@@ -36,7 +36,7 @@ namespace FriendLetter
 				routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 			});
 
-			app.Run(async(context) =>
+			app.Run(async(context) => //write this if a proper MVC route cannot be found
 			{
 				await context.Response.WriteAsync("Hello, world!");
 			});
