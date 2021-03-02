@@ -22,5 +22,24 @@ namespace FriendLetter
 		}
 
 		public IConfigurationRoot Configuration { get; }
+
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddMvc();
+		}
+
+		public void Configure(IApplicationBuilder app)
+		{
+			app.UseRouting();
+			app.UseEndpoints(routes =>
+			{
+				routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+			});
+
+			app.Run(async(context) =>
+			{
+				await context.Response.WriteAsync("Hello, world!");
+			});
+		}
   }
 }
